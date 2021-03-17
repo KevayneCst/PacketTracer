@@ -24,4 +24,9 @@ public class Connexion {
 	public AbstractDevice getConnectedDevice() {
 		return connectedDevice;
 	}
+
+	@Override
+	public String toString() {
+		return "Connected to: " + connectedDevice.getName() + " on " + connectedInterface.fullName();
+	}
 }

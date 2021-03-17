@@ -13,14 +13,17 @@ import packetracer.app.network.device.port.InterfaceAddressable;
  */
 public abstract class AbstractDevice {
 
-	protected List<AbstractInterface> interfaces;
+	private final String name;
+	protected final List<AbstractInterface> interfaces;
 
-	public AbstractDevice(int nbInterfaces) {
+	public AbstractDevice(String name, int nbInterfaces) {
+		this.name = name;
 		interfaces = new ArrayList<>();
 		init(nbInterfaces);
 	}
 
-	public AbstractDevice(List<AbstractInterface> interfaces) {
+	public AbstractDevice(String name, List<AbstractInterface> interfaces) {
+		this.name = name;
 		this.interfaces = interfaces;
 	}
 
@@ -28,6 +31,10 @@ public abstract class AbstractDevice {
 		for (int i = 0; i < nbInterface; i++) {
 			interfaces.add(new InterfaceAddressable(i + 1));
 		}
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public List<AbstractInterface> getInterfaces() {

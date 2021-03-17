@@ -23,10 +23,9 @@ public class InterfaceAddressable extends AbstractInterface {
 		subnetMask = null;
 	}
 
-	public InterfaceAddressable(int id, boolean portStatus, Connexion connexion, MediaAccessControl macAddress,
-			InternetProtocolVersion4 ipAddress, Mask subnetMask) {
-		super(id, portStatus, connexion);
-		this.macAddress = macAddress;
+	public InterfaceAddressable(int id, Connexion connexion, InternetProtocolVersion4 ipAddress, Mask subnetMask) {
+		super(id, connexion);
+		macAddress = ProviderMAC.generateMACAddress();
 		this.ipAddress = ipAddress;
 		this.subnetMask = subnetMask;
 	}
@@ -41,5 +40,11 @@ public class InterfaceAddressable extends AbstractInterface {
 
 	public Mask getSubnetMask() {
 		return subnetMask;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "\t" + macAddress.toString() + "\t" + ipAddress.toString() + "\t"
+				+ subnetMask.toString();
 	}
 }

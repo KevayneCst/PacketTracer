@@ -26,6 +26,6 @@ public class Mask extends AbstractAddress {
 
 	@Override
 	public String toString() {
-		return "Mask :" + address;
+		return "Mask: " + address;
 	}
 }

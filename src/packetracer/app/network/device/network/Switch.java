@@ -9,12 +9,12 @@ import packetracer.app.network.device.port.InterfaceSwitch;
  */
 public class Switch extends AbstractVirtualLocalAreaNetworkDevice {
 
-	public Switch() {
-		super(24);
+	public Switch(String name) {
+		super(name, 24);
 	}
 
-	public Switch(int nbInterface) {
-		super(nbInterface);
+	public Switch(String name, int nbInterface) {
+		super(name, nbInterface);
 	}
 
 	@Override

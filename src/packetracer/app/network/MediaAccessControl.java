@@ -26,6 +26,6 @@ public class MediaAccessControl extends AbstractAddress {
 
 	@Override
 	public String toString() {
-		return "@MAC :" + address;
+		return "@MAC: " + address;
 	}
 }

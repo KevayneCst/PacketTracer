@@ -7,7 +7,7 @@ package packetracer.app.network.device.port;
  */
 public abstract class AbstractInterface {
 
-	private int id;
+	private final int id;
 	private boolean portStatus;
 	private Connexion connexion;
 
@@ -17,14 +17,18 @@ public abstract class AbstractInterface {
 		connexion = null;
 	}
 
-	public AbstractInterface(int id, boolean portStatus, Connexion connexion) {
+	public AbstractInterface(int id, Connexion connexion) {
 		this.id = id;
-		this.portStatus = portStatus;
+		portStatus = true;
 		this.connexion = connexion;
 	}
 
+	public void switchPortStatus() {
+		portStatus = !portStatus;
+	}
+
 	public boolean isConnected() {
-		return connexion == null;
+		return connexion != null;
 	}
 
 	public int getId() {
@@ -39,8 +43,19 @@ public abstract class AbstractInterface {
 		return connexion;
 	}
 
-	public String fullName() {
+	public String shortName() {
 		return "Fa0/" + id;
+	}
+
+	public String fullName() {
+		return "FastEthernet0/" + id;
+	}
+
+	@Override
+	public String toString() {
+		String status = "\tPort: " + (portStatus ? "ENABLE" : "DISABLE");
+		String connected = "\t" + (isConnected() ? connexion.toString() : "Not connected");
+		return fullName() + status + connected;
 	}
 
 }

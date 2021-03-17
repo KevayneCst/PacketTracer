@@ -12,18 +12,18 @@ public class Computer extends AbstractDevice {
 
 	private Gateway gateway;
 
-	public Computer() {
-		super(1);
+	public Computer(String name) {
+		super(name, 1);
 		gateway = null;
 	}
 
-	public Computer(int nbInterface) {
-		super(nbInterface);
+	public Computer(String name, int nbInterface) {
+		super(name, nbInterface);
 		gateway = null;
 	}
 
-	public Computer(int nbInterface, Gateway gateway) {
-		super(nbInterface);
+	public Computer(String name, int nbInterface, Gateway gateway) {
+		super(name, nbInterface);
 		this.gateway = gateway;
 	}
 

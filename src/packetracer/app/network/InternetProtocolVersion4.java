@@ -26,7 +26,7 @@ public class InternetProtocolVersion4 extends AbstractAddress {
 
 	@Override
 	public String toString() {
-		return "@IP :" + address;
+		return "@IP: " + address;
 	}
 
 }

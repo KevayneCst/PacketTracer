@@ -18,8 +18,8 @@ public class InterfaceSwitch extends AbstractInterface {
 		mode = Mode.ACCESS;
 	}
 
-	public InterfaceSwitch(int id, boolean portStatus, Connexion connexion, VirtualLocalAreaNetwork vlan, Mode mode) {
-		super(id, portStatus, connexion);
+	public InterfaceSwitch(int id, Connexion connexion, VirtualLocalAreaNetwork vlan, Mode mode) {
+		super(id, connexion);
 		this.vlan = vlan;
 		this.mode = mode;
 	}
@@ -34,5 +34,15 @@ public class InterfaceSwitch extends AbstractInterface {
 
 	public enum Mode {
 		ACCESS, TRUNK;
+
+		@Override
+		public String toString() {
+			return "Mode: " + name();
+		}
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "\t" + vlan.toString() + "\t" + mode.toString();
 	}
 }

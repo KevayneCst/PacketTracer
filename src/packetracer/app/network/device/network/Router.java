@@ -9,12 +9,12 @@ import packetracer.app.network.device.AbstractDevice;
  */
 public class Router extends AbstractDevice {
 
-	public Router() {
-		super(3);
+	public Router(String name) {
+		super(name, 3);
 	}
 
-	public Router(int nbInterface) {
-		super(nbInterface);
+	public Router(String name, int nbInterface) {
+		super(name, nbInterface);
 	}
 
 }

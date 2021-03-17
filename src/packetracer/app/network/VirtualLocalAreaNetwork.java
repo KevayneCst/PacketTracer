@@ -25,7 +25,7 @@ public class VirtualLocalAreaNetwork {
 
 	@Override
 	public String toString() {
-		return "VLAN n°" + vlanID + ", name:" + vlanName;
+		return "VLAN: " + vlanID + "|" + vlanName;
 	}
 
 }
