@@ -9,7 +9,7 @@ public abstract class AbstractInterface {
 
 	private final int id;
 	private boolean portStatus;
-	private Connexion connexion;
+	private final Connexion connexion;
 
 	public AbstractInterface(int id) {
 		this.id = id;
@@ -53,8 +53,8 @@ public abstract class AbstractInterface {
 
 	@Override
 	public String toString() {
-		String status = "\tPort: " + (portStatus ? "ENABLE" : "DISABLE");
-		String connected = "\t" + (isConnected() ? connexion.toString() : "Not connected");
+		final String status = "\tPort: " + (portStatus ? "ENABLE" : "DISABLE");
+		final String connected = "\t" + (isConnected() ? connexion.toString() : "Not connected");
 		return fullName() + status + connected;
 	}
 

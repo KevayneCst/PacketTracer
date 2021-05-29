@@ -13,8 +13,8 @@ import packetracer.app.network.provider.ProviderMAC;
 public class InterfaceAddressable extends AbstractInterface {
 
 	private final MediaAccessControl macAddress;
-	private InternetProtocolVersion4 ipAddress;
-	private Mask subnetMask;
+	private final InternetProtocolVersion4 ipAddress;
+	private final Mask subnetMask;
 
 	public InterfaceAddressable(int id) {
 		super(id);

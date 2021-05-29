@@ -9,8 +9,8 @@ import packetracer.app.network.device.AbstractDevice;
  */
 public class Connexion {
 
-	private AbstractInterface connectedInterface;
-	private AbstractDevice connectedDevice;
+	private final AbstractInterface connectedInterface;
+	private final AbstractDevice connectedDevice;
 
 	public Connexion(AbstractInterface connectedInterface, AbstractDevice connectedDevice) {
 		this.connectedInterface = connectedInterface;

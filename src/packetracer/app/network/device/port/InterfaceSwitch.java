@@ -9,8 +9,8 @@ import packetracer.app.network.VirtualLocalAreaNetwork;
  */
 public class InterfaceSwitch extends AbstractInterface {
 
-	private VirtualLocalAreaNetwork vlan;
-	private Mode mode;
+	private final VirtualLocalAreaNetwork vlan;
+	private final Mode mode;
 
 	public InterfaceSwitch(int id, VirtualLocalAreaNetwork vlan) {
 		super(id);

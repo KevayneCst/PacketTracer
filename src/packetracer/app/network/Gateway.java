@@ -7,7 +7,7 @@ package packetracer.app.network;
  */
 public class Gateway {
 
-	private InternetProtocolVersion4 defaultGateway;
+	private final InternetProtocolVersion4 defaultGateway;
 
 	public Gateway(InternetProtocolVersion4 defaultGateway) {
 		this.defaultGateway = defaultGateway;

@@ -13,9 +13,15 @@ import packetracer.app.network.device.AbstractDevice;
  */
 public class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevice {
 
-	protected VirtualLocalAreaNetwork defaultVlan = new VirtualLocalAreaNetwork(1, "default");
+	protected final VirtualLocalAreaNetwork defaultVlan = new VirtualLocalAreaNetwork(1, "default");
 	protected final List<VirtualLocalAreaNetwork> vlanDatabase;
 
+	/**
+	 * Construct an AbstractVirtualLocalAreaNetworkDevice object
+	 *
+	 * @param name        The name of this device
+	 * @param nbInterface The number of interface of this device
+	 */
 	protected AbstractVirtualLocalAreaNetworkDevice(String name, int nbInterface) {
 		super(name, nbInterface);
 		vlanDatabase = new ArrayList<>();

@@ -1,9 +1,8 @@
 package packetracer.app.network;
 
-import packetracer.app.data.Regex;
+import packetracer.app.tool.Regex;
 
 /**
- *
  *
  * @author Kévin Constantin
  *

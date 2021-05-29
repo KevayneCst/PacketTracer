@@ -7,7 +7,7 @@ package packetracer.app.network;
  */
 public class Network {
 
-	private InternetProtocolVersion4 networkIP;
+	private final InternetProtocolVersion4 networkIP;
 
 	public Network(InternetProtocolVersion4 networkIP) {
 		this.networkIP = networkIP;
