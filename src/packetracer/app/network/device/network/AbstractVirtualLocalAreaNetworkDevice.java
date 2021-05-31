@@ -12,7 +12,7 @@ import packetracer.app.network.device.AbstractDevice;
  * @author Kévin Constantin
  *
  */
-public class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevice {
+public abstract class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevice {
 
 	protected final VirtualLocalAreaNetwork defaultVlan = new VirtualLocalAreaNetwork(1, "default");
 	protected final List<VirtualLocalAreaNetwork> vlanDatabase;
