@@ -1,5 +1,7 @@
 package packetracer.app.network.device.end;
 
+import java.util.Objects;
+
 import packetracer.app.network.Gateway;
 import packetracer.app.network.device.AbstractDevice;
 
@@ -52,6 +54,23 @@ public class Computer extends AbstractDevice {
 
 	public Gateway getGateway() {
 		return gateway;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(gateway);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Computer) {
+			final Computer other = (Computer) obj;
+			return gateway.equals(other.gateway) && super.equals(other);
+		}
+		return false;
 	}
 
 }

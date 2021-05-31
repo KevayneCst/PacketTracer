@@ -1,5 +1,7 @@
 package packetracer.app.network;
 
+import java.util.Objects;
+
 /**
  *
  * @author Kévin Constantin
@@ -21,6 +23,20 @@ public class VirtualLocalAreaNetwork {
 
 	public String getVlanName() {
 		return vlanName;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(vlanID, vlanName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof VirtualLocalAreaNetwork) {
+			final VirtualLocalAreaNetwork other = (VirtualLocalAreaNetwork) obj;
+			return vlanID == other.vlanID && vlanName.equals(other.vlanName);
+		}
+		return false;
 	}
 
 	@Override

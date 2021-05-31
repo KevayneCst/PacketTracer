@@ -1,9 +1,11 @@
 package packetracer.app.network.device;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import packetracer.app.network.device.port.AbstractInterface;
+import packetracer.app.network.device.port.Connexion;
 import packetracer.app.network.device.port.InterfaceAddressable;
 import packetracer.app.network.protocol.arp.ARPTable;
 
@@ -15,7 +17,7 @@ import packetracer.app.network.protocol.arp.ARPTable;
 public abstract class AbstractDevice {
 
 	private final String name;
-	protected final List<AbstractInterface> interfaces;
+	protected final Map<AbstractInterface, Connexion> interfaces;
 	protected final ARPTable arpTable;
 
 	/**
@@ -26,7 +28,7 @@ public abstract class AbstractDevice {
 	 */
 	public AbstractDevice(String name, int nbInterfaces) {
 		this.name = name;
-		interfaces = new ArrayList<>();
+		interfaces = new LinkedHashMap<>();
 		arpTable = new ARPTable();
 		init(nbInterfaces);
 	}
@@ -35,9 +37,9 @@ public abstract class AbstractDevice {
 	 * Create an AbstractDevice object
 	 *
 	 * @param name       The name of this device
-	 * @param interfaces A list of interfaces to assign to this device
+	 * @param interfaces A map of interfaces to assign to this device
 	 */
-	public AbstractDevice(String name, List<AbstractInterface> interfaces) {
+	public AbstractDevice(String name, Map<AbstractInterface, Connexion> interfaces) {
 		this.name = name;
 		this.interfaces = interfaces;
 		arpTable = new ARPTable();
@@ -51,7 +53,7 @@ public abstract class AbstractDevice {
 	 */
 	protected void init(int nbInterface) {
 		for (int i = 0; i < nbInterface; i++) {
-			interfaces.add(new InterfaceAddressable(i + 1));
+			interfaces.put(new InterfaceAddressable(i + 1), null);
 		}
 	}
 
@@ -59,12 +61,26 @@ public abstract class AbstractDevice {
 		return name;
 	}
 
-	public List<AbstractInterface> getInterfaces() {
+	public Map<AbstractInterface, Connexion> getInterfaces() {
 		return interfaces;
 	}
 
 	public ARPTable getARPTable() {
 		return arpTable;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(arpTable, interfaces, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof AbstractDevice) {
+			final AbstractDevice other = (AbstractDevice) obj;
+			return arpTable.equals(other.arpTable) && interfaces.equals(other.interfaces) && name.equals(other.name);
+		}
+		return false;
 	}
 
 }

@@ -3,6 +3,7 @@ package packetracer.app.network.protocol.arp;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -61,6 +62,20 @@ public class ARPTable {
 	public Map<ARPTableEntry, Long> getEntries() {
 		updateEntries();
 		return entries;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(entries);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof ARPTable) {
+			final ARPTable other = (ARPTable) obj;
+			return entries.equals(other.entries);
+		}
+		return false;
 	}
 
 }

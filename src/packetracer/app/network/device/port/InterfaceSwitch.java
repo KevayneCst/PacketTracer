@@ -1,5 +1,7 @@
 package packetracer.app.network.device.port;
 
+import java.util.Objects;
+
 import packetracer.app.network.VirtualLocalAreaNetwork;
 
 /**
@@ -18,8 +20,8 @@ public class InterfaceSwitch extends AbstractInterface {
 		mode = Mode.ACCESS;
 	}
 
-	public InterfaceSwitch(int id, Connexion connexion, VirtualLocalAreaNetwork vlan, Mode mode) {
-		super(id, connexion);
+	public InterfaceSwitch(int id, VirtualLocalAreaNetwork vlan, Mode mode) {
+		super(id);
 		this.vlan = vlan;
 		this.mode = mode;
 	}
@@ -39,6 +41,23 @@ public class InterfaceSwitch extends AbstractInterface {
 		public String toString() {
 			return "Mode: " + name();
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(mode, vlan);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof InterfaceSwitch) {
+			final InterfaceSwitch other = (InterfaceSwitch) obj;
+			return mode == other.mode && vlan.equals(other.vlan) && super.equals(other);
+		}
+		return false;
 	}
 
 	@Override

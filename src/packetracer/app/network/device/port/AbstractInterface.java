@@ -1,5 +1,7 @@
 package packetracer.app.network.device.port;
 
+import java.util.Objects;
+
 /**
  *
  * @author Kévin Constantin
@@ -9,26 +11,14 @@ public abstract class AbstractInterface {
 
 	private final int id;
 	private boolean portStatus;
-	private final Connexion connexion;
 
 	public AbstractInterface(int id) {
 		this.id = id;
 		portStatus = true;
-		connexion = null;
-	}
-
-	public AbstractInterface(int id, Connexion connexion) {
-		this.id = id;
-		portStatus = true;
-		this.connexion = connexion;
 	}
 
 	public void switchPortStatus() {
 		portStatus = !portStatus;
-	}
-
-	public boolean isConnected() {
-		return connexion != null;
 	}
 
 	public int getId() {
@@ -37,10 +27,6 @@ public abstract class AbstractInterface {
 
 	public boolean isPortStatus() {
 		return portStatus;
-	}
-
-	public Connexion getConnexion() {
-		return connexion;
 	}
 
 	public String shortName() {
@@ -52,10 +38,23 @@ public abstract class AbstractInterface {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(id, portStatus);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof AbstractInterface) {
+			final AbstractInterface other = (AbstractInterface) obj;
+			return id == other.id && portStatus == other.portStatus;
+		}
+		return false;
+	}
+
+	@Override
 	public String toString() {
 		final String status = "\tPort: " + (portStatus ? "ENABLE" : "DISABLE");
-		final String connected = "\t" + (isConnected() ? connexion.toString() : "Not connected");
-		return fullName() + status + connected;
+		return fullName() + status;
 	}
 
 }

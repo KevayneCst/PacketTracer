@@ -1,5 +1,7 @@
 package packetracer.app.network;
 
+import java.util.Objects;
+
 /**
  *
  * @author Kévin Constantin
@@ -15,6 +17,20 @@ public class Gateway {
 
 	public InternetProtocolVersion4 getDefaultGateway() {
 		return defaultGateway;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(defaultGateway);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Gateway) {
+			final Gateway other = (Gateway) obj;
+			return defaultGateway.equals(other.defaultGateway);
+		}
+		return false;
 	}
 
 }

@@ -1,5 +1,7 @@
 package packetracer.app.network.device.port;
 
+import java.util.Objects;
+
 import packetracer.app.network.InternetProtocolVersion4;
 import packetracer.app.network.Mask;
 import packetracer.app.network.MediaAccessControl;
@@ -23,8 +25,8 @@ public class InterfaceAddressable extends AbstractInterface {
 		subnetMask = null;
 	}
 
-	public InterfaceAddressable(int id, Connexion connexion, InternetProtocolVersion4 ipAddress, Mask subnetMask) {
-		super(id, connexion);
+	public InterfaceAddressable(int id, InternetProtocolVersion4 ipAddress, Mask subnetMask) {
+		super(id);
 		macAddress = ProviderMAC.generateMACAddress();
 		this.ipAddress = ipAddress;
 		this.subnetMask = subnetMask;
@@ -40,6 +42,24 @@ public class InterfaceAddressable extends AbstractInterface {
 
 	public Mask getSubnetMask() {
 		return subnetMask;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(ipAddress, macAddress, subnetMask);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof InterfaceAddressable) {
+			final InterfaceAddressable other = (InterfaceAddressable) obj;
+			return ipAddress.equals(other.ipAddress) && macAddress.equals(other.macAddress)
+					&& subnetMask.equals(other.subnetMask) && super.equals(other);
+		}
+		return false;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package packetracer.app.network.device.network;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import packetracer.app.network.VirtualLocalAreaNetwork;
 import packetracer.app.network.device.AbstractDevice;
@@ -38,6 +39,24 @@ public class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevice {
 
 	public List<VirtualLocalAreaNetwork> getVlanDatabase() {
 		return vlanDatabase;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(defaultVlan, vlanDatabase);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof AbstractVirtualLocalAreaNetworkDevice) {
+			final AbstractVirtualLocalAreaNetworkDevice other = (AbstractVirtualLocalAreaNetworkDevice) obj;
+			return defaultVlan.equals(other.defaultVlan) && vlanDatabase.equals(other.vlanDatabase)
+					&& super.equals(other);
+		}
+		return false;
 	}
 
 }

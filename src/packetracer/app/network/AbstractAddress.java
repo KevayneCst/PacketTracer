@@ -1,5 +1,7 @@
 package packetracer.app.network;
 
+import java.util.Objects;
+
 /**
  *
  * @author Kévin Constantin
@@ -30,6 +32,20 @@ public abstract class AbstractAddress {
 
 	public String getAddress() {
 		return address;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof AbstractAddress) {
+			final AbstractAddress other = (AbstractAddress) obj;
+			return address.equals(other.address);
+		}
+		return false;
 	}
 
 	@Override

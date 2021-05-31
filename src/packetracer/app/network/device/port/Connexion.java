@@ -1,5 +1,7 @@
 package packetracer.app.network.device.port;
 
+import java.util.Objects;
+
 import packetracer.app.network.device.AbstractDevice;
 
 /**
@@ -23,6 +25,20 @@ public class Connexion {
 
 	public AbstractDevice getConnectedDevice() {
 		return connectedDevice;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(connectedDevice, connectedInterface);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Connexion) {
+			final Connexion other = (Connexion) obj;
+			return connectedDevice.equals(other.connectedDevice) && connectedInterface.equals(other.connectedInterface);
+		}
+		return false;
 	}
 
 	@Override

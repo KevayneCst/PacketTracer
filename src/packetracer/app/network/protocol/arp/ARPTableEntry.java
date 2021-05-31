@@ -1,5 +1,7 @@
 package packetracer.app.network.protocol.arp;
 
+import java.util.Objects;
+
 import packetracer.app.network.InternetProtocolVersion4;
 import packetracer.app.network.MediaAccessControl;
 
@@ -30,6 +32,21 @@ public class ARPTableEntry {
 
 	public int getInterfaceID() {
 		return interfaceID;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(hardwareAddress, interfaceID, ipAddress);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof ARPTableEntry) {
+			final ARPTableEntry other = (ARPTableEntry) obj;
+			return hardwareAddress.equals(other.hardwareAddress) && interfaceID == other.interfaceID
+					&& ipAddress.equals(other.ipAddress);
+		}
+		return false;
 	}
 
 }

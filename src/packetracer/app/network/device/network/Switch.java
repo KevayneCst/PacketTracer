@@ -20,7 +20,7 @@ public class Switch extends AbstractVirtualLocalAreaNetworkDevice {
 	@Override
 	protected void init(int nbInterface) {
 		for (int i = 0; i < nbInterface; i++) {
-			interfaces.add(new InterfaceSwitch(i + 1, defaultVlan));
+			interfaces.put(new InterfaceSwitch(i + 1, defaultVlan), null);
 		}
 	}
 
