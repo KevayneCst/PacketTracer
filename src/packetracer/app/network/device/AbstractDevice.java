@@ -16,17 +16,20 @@ import packetracer.app.network.protocol.arp.ARPTable;
  */
 public abstract class AbstractDevice implements Linkable {
 
-	private final String name;
+	protected final String deviceCategory;
+	protected final String name;
 	protected final Map<AbstractInterface, Connexion> interfaces;
 	protected final ARPTable arpTable;
 
 	/**
 	 * Create an AbstractDevice object
 	 *
-	 * @param name         The name of this device
-	 * @param nbInterfaces The number of interfaces of this device
+	 * @param deviceCategory Device category (Computer, Switch, Router...)
+	 * @param name           The name of this device
+	 * @param nbInterfaces   The number of interfaces of this device
 	 */
-	public AbstractDevice(String name, int nbInterfaces) {
+	public AbstractDevice(String deviceCategory, String name, int nbInterfaces) {
+		this.deviceCategory = deviceCategory;
 		this.name = name;
 		interfaces = new LinkedHashMap<>();
 		arpTable = new ARPTable();
@@ -36,10 +39,12 @@ public abstract class AbstractDevice implements Linkable {
 	/**
 	 * Create an AbstractDevice object
 	 *
-	 * @param name       The name of this device
-	 * @param interfaces A map of interfaces to assign to this device
+	 * @param deviceCategory Device category (Computer, Switch, Router...)
+	 * @param name           The name of this device
+	 * @param interfaces     A map of interfaces to assign to this device
 	 */
-	public AbstractDevice(String name, Map<AbstractInterface, Connexion> interfaces) {
+	public AbstractDevice(String deviceCategory, String name, Map<AbstractInterface, Connexion> interfaces) {
+		this.deviceCategory = deviceCategory;
 		this.name = name;
 		this.interfaces = interfaces;
 		arpTable = new ARPTable();
@@ -71,6 +76,10 @@ public abstract class AbstractDevice implements Linkable {
 		return false;
 	}
 
+	public String getDeviceCategory() {
+		return deviceCategory;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -95,6 +104,24 @@ public abstract class AbstractDevice implements Linkable {
 			return arpTable.equals(other.arpTable) && interfaces.equals(other.interfaces) && name.equals(other.name);
 		}
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(deviceCategory + ": \"" + name + "\"");
+		sb.append("\tInterfaces: " + interfaces.size());
+		for (final Map.Entry<AbstractInterface, Connexion> map : interfaces.entrySet()) {
+			sb.append("\n" + map.getKey().toString());
+			final Connexion value = map.getValue();
+			if (value != null) {
+				sb.append("\t" + value.toString());
+			} else {
+				sb.append("\tNot connected");
+			}
+		}
+		sb.append("\n" + arpTable.toString() + "\n");
+		return sb.toString();
 	}
 
 }

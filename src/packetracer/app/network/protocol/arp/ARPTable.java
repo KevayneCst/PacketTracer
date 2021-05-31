@@ -78,4 +78,18 @@ public class ARPTable {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("ARP Table Cache");
+		if (entries.isEmpty()) {
+			return sb.append(" is empty").toString();
+		}
+		int i = 1;
+		final Iterator<Map.Entry<ARPTableEntry, Long>> it = entries.entrySet().iterator();
+		while (it.hasNext()) {
+			sb.append("\n" + i++ + "\t" + it.next().getKey());
+		}
+		return sb.toString();
+	}
+
 }

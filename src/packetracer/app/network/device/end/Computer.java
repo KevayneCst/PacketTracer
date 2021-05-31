@@ -13,6 +13,7 @@ import packetracer.app.network.device.AbstractDevice;
  */
 public class Computer extends AbstractDevice {
 
+	private static final String DEVICE_CATEGORY = "Computer";
 	private Gateway gateway;
 
 	/**
@@ -21,7 +22,7 @@ public class Computer extends AbstractDevice {
 	 * @param name The name of this device
 	 */
 	public Computer(String name) {
-		super(name, 1);
+		super(DEVICE_CATEGORY, name, 1);
 		gateway = null;
 	}
 
@@ -32,7 +33,7 @@ public class Computer extends AbstractDevice {
 	 * @param nbInterface The number of interfaces of this device
 	 */
 	public Computer(String name, int nbInterface) {
-		super(name, nbInterface);
+		super(DEVICE_CATEGORY, name, nbInterface);
 		gateway = null;
 	}
 
@@ -44,7 +45,7 @@ public class Computer extends AbstractDevice {
 	 * @param gateway     The gateway of this device
 	 */
 	public Computer(String name, int nbInterface, Gateway gateway) {
-		super(name, nbInterface);
+		super(DEVICE_CATEGORY, name, nbInterface);
 		this.gateway = gateway;
 	}
 

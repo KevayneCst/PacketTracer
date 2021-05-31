@@ -49,4 +49,9 @@ public class ARPTableEntry {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "Interface n°" + interfaceID + "\t" + hardwareAddress + "\t" + ipAddress;
+	}
+
 }

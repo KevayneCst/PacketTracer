@@ -9,18 +9,20 @@ import packetracer.app.network.device.port.InterfaceSwitch;
  */
 public class Switch extends AbstractVirtualLocalAreaNetworkDevice {
 
+	private static final String DEVICE_CATEGORY = "Switch";
+
 	public Switch(String name) {
-		super(name, 24);
+		super(DEVICE_CATEGORY, name, 24);
 	}
 
 	public Switch(String name, int nbInterface) {
-		super(name, nbInterface);
+		super(DEVICE_CATEGORY, name, nbInterface);
 	}
 
 	@Override
 	protected void init(int nbInterface) {
 		for (int i = 0; i < nbInterface; i++) {
-			interfaces.put(new InterfaceSwitch(i + 1, defaultVlan), null);
+			interfaces.put(new InterfaceSwitch(i + 1, DEFAULT_VLAN), null);
 		}
 	}
 

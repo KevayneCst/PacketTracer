@@ -33,4 +33,9 @@ public class Gateway {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "@IPGateway: " + defaultGateway.getAddress();
+	}
+
 }

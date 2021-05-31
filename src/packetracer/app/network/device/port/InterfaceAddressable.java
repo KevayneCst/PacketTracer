@@ -64,7 +64,8 @@ public class InterfaceAddressable extends AbstractInterface {
 
 	@Override
 	public String toString() {
-		return super.toString() + "\t" + macAddress.toString() + "\t" + ipAddress.toString() + "\t"
-				+ subnetMask.toString();
+		final String ip = ipAddress == null ? "@IP: none" : ipAddress.toString();
+		final String mask = subnetMask == null ? "Mask: none" : subnetMask.toString();
+		return super.toString() + "\t" + macAddress.toString() + "\t" + ip + "\t" + mask;
 	}
 }

@@ -14,7 +14,7 @@ import packetracer.app.network.device.AbstractDevice;
  */
 public abstract class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevice {
 
-	protected final VirtualLocalAreaNetwork defaultVlan = new VirtualLocalAreaNetwork(1, "default");
+	protected static final VirtualLocalAreaNetwork DEFAULT_VLAN = new VirtualLocalAreaNetwork(1, "default");
 	protected final List<VirtualLocalAreaNetwork> vlanDatabase;
 
 	/**
@@ -23,10 +23,10 @@ public abstract class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevi
 	 * @param name        The name of this device
 	 * @param nbInterface The number of interface of this device
 	 */
-	protected AbstractVirtualLocalAreaNetworkDevice(String name, int nbInterface) {
-		super(name, nbInterface);
+	protected AbstractVirtualLocalAreaNetworkDevice(String deviceCategory, String name, int nbInterface) {
+		super(deviceCategory, name, nbInterface);
 		vlanDatabase = new ArrayList<>();
-		vlanDatabase.add(defaultVlan);
+		vlanDatabase.add(DEFAULT_VLAN);
 	}
 
 	public boolean addVlan(int vlanID, String vlanName) {
@@ -45,7 +45,7 @@ public abstract class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevi
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(defaultVlan, vlanDatabase);
+		result = prime * result + Objects.hash(DEFAULT_VLAN, vlanDatabase);
 		return result;
 	}
 
@@ -53,8 +53,8 @@ public abstract class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevi
 	public boolean equals(Object obj) {
 		if (obj instanceof AbstractVirtualLocalAreaNetworkDevice) {
 			final AbstractVirtualLocalAreaNetworkDevice other = (AbstractVirtualLocalAreaNetworkDevice) obj;
-			return defaultVlan.equals(other.defaultVlan) && vlanDatabase.equals(other.vlanDatabase)
-					&& super.equals(other);
+			return DEFAULT_VLAN.equals(AbstractVirtualLocalAreaNetworkDevice.DEFAULT_VLAN)
+					&& vlanDatabase.equals(other.vlanDatabase) && super.equals(other);
 		}
 		return false;
 	}
