@@ -14,7 +14,7 @@ import packetracer.app.network.protocol.arp.ARPTable;
  * @author Kévin Constantin
  *
  */
-public abstract class AbstractDevice {
+public abstract class AbstractDevice implements Linkable {
 
 	private final String name;
 	protected final Map<AbstractInterface, Connexion> interfaces;
@@ -55,6 +55,20 @@ public abstract class AbstractDevice {
 		for (int i = 0; i < nbInterface; i++) {
 			interfaces.put(new InterfaceAddressable(i + 1), null);
 		}
+	}
+
+	@Override
+	public boolean connect(int idSrcInterface, AbstractDevice dstDevice, int idDstInterface) {
+		final AbstractInterface key = interfaces.keySet().toArray(new AbstractInterface[0])[idSrcInterface - 1];
+		final Connexion link = interfaces.get(key);
+		if (key.isPortStatus() && link != null) {
+			final AbstractInterface keyDst = dstDevice.interfaces.keySet()
+					.toArray(new AbstractInterface[0])[idDstInterface - 1];
+			dstDevice.interfaces.put(keyDst, new Connexion(key, this));
+			interfaces.put(key, new Connexion(keyDst, dstDevice));
+			return true;
+		}
+		return false;
 	}
 
 	public String getName() {
