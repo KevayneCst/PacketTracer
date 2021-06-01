@@ -107,14 +107,15 @@ public abstract class AbstractDevice implements Linkable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(arpTable, interfaces, name);
+		return Objects.hash(arpTable, interfaces, name, deviceCategory);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof AbstractDevice) {
 			final AbstractDevice other = (AbstractDevice) obj;
-			return arpTable.equals(other.arpTable) && interfaces.equals(other.interfaces) && name.equals(other.name);
+			return arpTable.equals(other.arpTable) && interfaces.equals(other.interfaces) && name.equals(other.name)
+					&& deviceCategory.equals(other.deviceCategory);
 		}
 		return false;
 	}
