@@ -67,7 +67,7 @@ public abstract class AbstractDevice implements Linkable {
 	public final boolean link(int idSrcInterface, AbstractDevice dstDevice, int idDstInterface) {
 		final AbstractInterface key = interfaces.keySet().toArray(new AbstractInterface[0])[idSrcInterface - 1];
 		final Connexion link = interfaces.get(key);
-		if (key.isPortStatus() && link != null) {
+		if (key.isPortStatus() && link == null) {
 			final AbstractInterface keyDst = dstDevice.interfaces.keySet()
 					.toArray(new AbstractInterface[0])[idDstInterface - 1];
 			dstDevice.interfaces.put(keyDst, new Connexion(key, this));
