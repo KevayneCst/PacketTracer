@@ -1,5 +1,6 @@
 package packetracer.app.network.device;
 
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -63,7 +64,7 @@ public abstract class AbstractDevice implements Linkable {
 	}
 
 	@Override
-	public boolean connect(int idSrcInterface, AbstractDevice dstDevice, int idDstInterface) {
+	public final boolean link(int idSrcInterface, AbstractDevice dstDevice, int idDstInterface) {
 		final AbstractInterface key = interfaces.keySet().toArray(new AbstractInterface[0])[idSrcInterface - 1];
 		final Connexion link = interfaces.get(key);
 		if (key.isPortStatus() && link != null) {
@@ -72,6 +73,18 @@ public abstract class AbstractDevice implements Linkable {
 			dstDevice.interfaces.put(keyDst, new Connexion(key, this));
 			interfaces.put(key, new Connexion(keyDst, dstDevice));
 			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public final boolean isLinked(AbstractDevice toTest) {
+		final Iterator<Map.Entry<AbstractInterface, Connexion>> it = interfaces.entrySet().iterator();
+		while (it.hasNext()) {
+			final Connexion value = it.next().getValue();
+			if (value != null && value.getConnectedDevice().equals(toTest)) {
+				return true;
+			}
 		}
 		return false;
 	}
