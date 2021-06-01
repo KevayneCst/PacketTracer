@@ -73,7 +73,7 @@ public class ARPTable {
 	public boolean equals(Object obj) {
 		if (obj instanceof ARPTable) {
 			final ARPTable other = (ARPTable) obj;
-			return entries.equals(other.entries);
+			return Objects.equals(entries, other.entries);
 		}
 		return false;
 	}

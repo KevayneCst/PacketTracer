@@ -34,7 +34,7 @@ public class VirtualLocalAreaNetwork {
 	public boolean equals(Object obj) {
 		if (obj instanceof VirtualLocalAreaNetwork) {
 			final VirtualLocalAreaNetwork other = (VirtualLocalAreaNetwork) obj;
-			return vlanID == other.vlanID && vlanName.equals(other.vlanName);
+			return vlanID == other.vlanID && Objects.equals(vlanName, other.vlanName);
 		}
 		return false;
 	}

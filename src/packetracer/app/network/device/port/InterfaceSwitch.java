@@ -55,7 +55,7 @@ public class InterfaceSwitch extends AbstractInterface {
 	public boolean equals(Object obj) {
 		if (obj instanceof InterfaceSwitch) {
 			final InterfaceSwitch other = (InterfaceSwitch) obj;
-			return mode == other.mode && vlan.equals(other.vlan) && super.equals(other);
+			return mode == other.mode && Objects.equals(vlan, other.vlan) && super.equals(other);
 		}
 		return false;
 	}

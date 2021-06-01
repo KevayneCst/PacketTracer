@@ -114,8 +114,8 @@ public abstract class AbstractDevice implements Linkable {
 	public boolean equals(Object obj) {
 		if (obj instanceof AbstractDevice) {
 			final AbstractDevice other = (AbstractDevice) obj;
-			return arpTable.equals(other.arpTable) && interfaces.equals(other.interfaces) && name.equals(other.name)
-					&& deviceCategory.equals(other.deviceCategory);
+			return Objects.equals(arpTable, other.arpTable) && Objects.equals(interfaces, other.interfaces)
+					&& Objects.equals(name, other.name) && Objects.equals(deviceCategory, other.deviceCategory);
 		}
 		return false;
 	}

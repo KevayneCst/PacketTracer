@@ -36,7 +36,8 @@ public class Connexion {
 	public boolean equals(Object obj) {
 		if (obj instanceof Connexion) {
 			final Connexion other = (Connexion) obj;
-			return connectedDevice.equals(other.connectedDevice) && connectedInterface.equals(other.connectedInterface);
+			return Objects.equals(connectedDevice, other.connectedDevice)
+					&& Objects.equals(connectedInterface, other.connectedInterface);
 		}
 		return false;
 	}

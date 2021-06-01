@@ -28,7 +28,7 @@ public class Gateway {
 	public boolean equals(Object obj) {
 		if (obj instanceof Gateway) {
 			final Gateway other = (Gateway) obj;
-			return defaultGateway.equals(other.defaultGateway);
+			return Objects.equals(defaultGateway, other.defaultGateway);
 		}
 		return false;
 	}

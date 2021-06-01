@@ -56,8 +56,8 @@ public class InterfaceAddressable extends AbstractInterface {
 	public boolean equals(Object obj) {
 		if (obj instanceof InterfaceAddressable) {
 			final InterfaceAddressable other = (InterfaceAddressable) obj;
-			return ipAddress.equals(other.ipAddress) && macAddress.equals(other.macAddress)
-					&& subnetMask.equals(other.subnetMask) && super.equals(other);
+			return Objects.equals(macAddress, other.macAddress) && Objects.equals(ipAddress, other.ipAddress)
+					&& Objects.equals(subnetMask, other.subnetMask) && super.equals(other);
 		}
 		return false;
 	}

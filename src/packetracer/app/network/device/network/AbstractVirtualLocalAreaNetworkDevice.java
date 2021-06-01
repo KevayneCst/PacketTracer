@@ -45,7 +45,7 @@ public abstract class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevi
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(DEFAULT_VLAN, vlanDatabase);
+		result = prime * result + Objects.hash(vlanDatabase);
 		return result;
 	}
 
@@ -53,8 +53,7 @@ public abstract class AbstractVirtualLocalAreaNetworkDevice extends AbstractDevi
 	public boolean equals(Object obj) {
 		if (obj instanceof AbstractVirtualLocalAreaNetworkDevice) {
 			final AbstractVirtualLocalAreaNetworkDevice other = (AbstractVirtualLocalAreaNetworkDevice) obj;
-			return DEFAULT_VLAN.equals(AbstractVirtualLocalAreaNetworkDevice.DEFAULT_VLAN)
-					&& vlanDatabase.equals(other.vlanDatabase) && super.equals(other);
+			return Objects.equals(vlanDatabase, other.vlanDatabase) && super.equals(other);
 		}
 		return false;
 	}

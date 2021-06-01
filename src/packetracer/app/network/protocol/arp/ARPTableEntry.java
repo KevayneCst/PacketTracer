@@ -43,8 +43,8 @@ public class ARPTableEntry {
 	public boolean equals(Object obj) {
 		if (obj instanceof ARPTableEntry) {
 			final ARPTableEntry other = (ARPTableEntry) obj;
-			return hardwareAddress.equals(other.hardwareAddress) && interfaceID == other.interfaceID
-					&& ipAddress.equals(other.ipAddress);
+			return Objects.equals(ipAddress, other.ipAddress) && interfaceID == other.interfaceID
+					&& Objects.equals(hardwareAddress, other.hardwareAddress);
 		}
 		return false;
 	}

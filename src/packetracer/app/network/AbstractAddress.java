@@ -43,7 +43,7 @@ public abstract class AbstractAddress {
 	public boolean equals(Object obj) {
 		if (obj instanceof AbstractAddress) {
 			final AbstractAddress other = (AbstractAddress) obj;
-			return address.equals(other.address);
+			return Objects.equals(address, other.address);
 		}
 		return false;
 	}

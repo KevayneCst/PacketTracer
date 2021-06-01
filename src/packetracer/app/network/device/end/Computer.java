@@ -69,7 +69,7 @@ public class Computer extends AbstractDevice {
 	public boolean equals(Object obj) {
 		if (obj instanceof Computer) {
 			final Computer other = (Computer) obj;
-			return gateway.equals(other.gateway) && super.equals(other);
+			return Objects.equals(gateway, other.gateway) && super.equals(other);
 		}
 		return false;
 	}
