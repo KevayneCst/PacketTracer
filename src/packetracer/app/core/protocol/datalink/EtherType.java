@@ -1,5 +1,10 @@
 package packetracer.app.core.protocol.datalink;
 
+/**
+ *
+ * @author Kévin Constantin
+ *
+ */
 public enum EtherType {
 	IPV4(0x0800), ARP(0x0806), VLAN(0x8100);
 

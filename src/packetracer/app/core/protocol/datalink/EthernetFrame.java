@@ -3,6 +3,11 @@ package packetracer.app.core.protocol.datalink;
 import packetracer.app.core.protocol.Frame;
 import packetracer.app.core.protocol.MACHeader;
 
+/**
+ *
+ * @author Kévin Constantin
+ *
+ */
 public class EthernetFrame extends Frame {
 
 	public static final int BYTE_SIZE_MIN = 64;

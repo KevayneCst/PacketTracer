@@ -3,6 +3,11 @@ package packetracer.app.core.protocol;
 import packetracer.app.core.MediaAccessControl;
 import packetracer.app.core.protocol.datalink.EtherType;
 
+/**
+ *
+ * @author Kévin Constantin
+ *
+ */
 public class MACHeader extends Header {
 
 	public static final int BYTE_SIZE = 14;
