@@ -6,19 +6,10 @@ public abstract class Frame {
 	protected final int maxByteSizeFrame;
 	protected int byteSizeFrame;
 
-	public Frame(int actualByteSizeFrame, int minByteSizeFrame, int maxByteSizeFrame) {
+	public Frame(int byteSizeFrame, int minByteSizeFrame, int maxByteSizeFrame) {
 		this.minByteSizeFrame = minByteSizeFrame;
 		this.maxByteSizeFrame = maxByteSizeFrame;
-		assertCorrectFrameSize(actualByteSizeFrame);
-	}
-
-	private void assertCorrectFrameSize(int actualByteSizeFrame) {
-		if (actualByteSizeFrame < minByteSizeFrame || actualByteSizeFrame > maxByteSizeFrame) {
-			final String msgRange = "[" + minByteSizeFrame + ";" + maxByteSizeFrame + "] bytes ";
-			final String msgGot = "(got:" + actualByteSizeFrame + ")";
-			throw new IllegalArgumentException(
-					"Frame is not well formed, size in bytes doesn't fit between " + msgRange + msgGot);
-		}
+		this.byteSizeFrame = byteSizeFrame;
 	}
 
 	public int getMinByteSizeFrame() {

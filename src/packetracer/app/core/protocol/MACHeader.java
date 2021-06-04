@@ -11,7 +11,7 @@ public class MACHeader extends Header {
 	private final EtherType ethertype;
 
 	public MACHeader(MediaAccessControl destination, MediaAccessControl source, EtherType ethertype) {
-		super(MediaAccessControl.BYTE_SIZE * 2 + EtherType.BYTE_SIZE, BYTE_SIZE);
+		super(BYTE_SIZE);
 		this.destination = destination;
 		this.source = source;
 		this.ethertype = ethertype;
