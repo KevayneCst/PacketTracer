@@ -1,7 +1,7 @@
-package packetracer.app.core.protocol.datalink;
+package packetracer.app.core.protocol.frame;
 
-import packetracer.app.core.protocol.Frame;
-import packetracer.app.core.protocol.MACHeader;
+import packetracer.app.core.protocol.FrameCheckSequence;
+import packetracer.app.core.protocol.header.MACHeader;
 
 /**
  *
@@ -14,6 +14,8 @@ public class EthernetFrame extends Frame {
 	public static final int BYTE_SIZE_MAX = 1518;
 
 	protected MACHeader macHeader;
+
+	protected FrameCheckSequence crcChecksum;
 
 	public EthernetFrame(int byteSizeFrame) {
 		super(byteSizeFrame, BYTE_SIZE_MIN, BYTE_SIZE_MAX);

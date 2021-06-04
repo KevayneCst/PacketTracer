@@ -1,4 +1,4 @@
-package packetracer.app.core.protocol;
+package packetracer.app.core.protocol.frame;
 
 /**
  *

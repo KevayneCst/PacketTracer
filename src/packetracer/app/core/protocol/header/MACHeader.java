@@ -1,7 +1,6 @@
-package packetracer.app.core.protocol;
+package packetracer.app.core.protocol.header;
 
 import packetracer.app.core.MediaAccessControl;
-import packetracer.app.core.protocol.datalink.EtherType;
 
 /**
  *
